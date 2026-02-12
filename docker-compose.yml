@@ -1,0 +1,20 @@
+services:
+  arch-dev:
+    build: .
+    container_name: arch_dev
+    hostname: arch-pc
+    restart: unless-stopped
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+          cpus: '0.000'
+    volumes:
+      - D:\projects:/home/ataparlar/projects
+      - D:\data:/home/ataparlar/data
