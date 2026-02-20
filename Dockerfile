@@ -1,7 +1,7 @@
 FROM archlinux:latest
 
 RUN pacman -Syu --noconfirm && \
-    pacman -S --noconfirm base-devel sudo git vim nvidia-utils zsh curl cmake openssh
+    pacman -S --noconfirm base-devel sudo git vim nvidia-utils zsh curl wget cmake openssh nano
 
 ARG USER_NAME=ataparlar
 ARG GIT_EMAIL="ataparlars5@gmail.com"
