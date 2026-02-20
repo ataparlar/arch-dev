@@ -1,6 +1,11 @@
 services:
   arch-dev:
-    build: .
+    build:
+      context: .
+      args:
+        USER_NAME: ${USER_NAME:-ataparlar}
+        GIT_EMAIL: ${GIT_EMAIL:-ataparlars5@gmail.com}
+        GIT_NAME: ${GIT_NAME:-Ata Parlar}
     container_name: arch_dev
     hostname: arch-pc
     restart: unless-stopped
@@ -16,5 +21,5 @@ services:
               capabilities: [ gpu ]
           cpus: '0.000'
     volumes:
-      - D:\projects:/home/ataparlar/projects
-      - D:\data:/home/ataparlar/data
+      - D:\projects:/home/${USER_NAME:-ataparlar}/projects
+      - D:\data:/home/${USER_NAME:-ataparlar}/data
