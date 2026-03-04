@@ -21,5 +21,5 @@ POWERLEVEL9K_STATUS_CROSS=true
 
 # Commented out ROS Noetic setup as it's not present in the base image by default
 # source /opt/ros/noetic/setup.zsh
-export PATH="$HOME/.bin/:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.bin/:$PATH"
 [ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases

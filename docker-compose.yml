@@ -9,9 +9,11 @@ services:
     container_name: arch_dev
     hostname: arch-pc
     restart: unless-stopped
-    command: tail -f /dev/null
     stdin_open: true
     tty: true
+    environment:
+      # Expose Ollama API on all container interfaces so tools inside can reach it
+      - OLLAMA_HOST=0.0.0.0
     deploy:
       resources:
         reservations:
@@ -21,5 +23,10 @@ services:
               capabilities: [ gpu ]
           cpus: '0.000'
     volumes:
-      - D:\projects:/home/${USER_NAME:-ataparlar}/projects
-      - D:\data:/home/${USER_NAME:-ataparlar}/data
+      - /home/ataparlar/projects:/home/${USER_NAME:-ataparlar}/projects
+      - /home/ataparlar/data:/home/${USER_NAME:-ataparlar}/data
+      # Persist Ollama models between container restarts
+      - ollama_models:/home/${USER_NAME:-ataparlar}/.ollama
+
+volumes:
+  ollama_models:
